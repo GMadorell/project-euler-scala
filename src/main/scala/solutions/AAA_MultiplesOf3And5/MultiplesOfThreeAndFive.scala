@@ -9,7 +9,7 @@ object MultiplesOfThreeAndFive extends App {
    *
    * Find the sum of all the multiples of 3 or 5 below 1000.
    */
-  
+
   val isMultipleOf3: (Int) => Boolean = Multiple.isMultiple(3)
   val isMultipleOf5: (Int) => Boolean = Multiple.isMultiple(5)
   val isMultipleOf3Or5 = (n: Int) => isMultipleOf3(n) || isMultipleOf5(n)
