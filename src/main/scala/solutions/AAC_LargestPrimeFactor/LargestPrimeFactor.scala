@@ -10,5 +10,5 @@ object LargestPrimeFactor extends App {
    */
 
   val solution = Primes.primeFactors(600851475143L).last
-  println("Solution to 'Largest Prime Factor: " + solution)
+  println("Solution to 'Largest Prime Factor': " + solution)
 }
