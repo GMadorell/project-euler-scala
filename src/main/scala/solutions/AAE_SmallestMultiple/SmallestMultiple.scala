@@ -8,15 +8,15 @@ object SmallestMultiple extends App {
    *
    *  What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
    */
-  val startRange = 1
-  val endRange = 20
+
 
   /*
    * The idea of this solution is to take all the numbers that are evenly divisible by the last number of the
    * range and check whether they are also evenly divisible by all the others, starting from the second
    * biggest number. This way we skip having to check a lot of numbers.
    */
-
+  val startRange = 1
+  val endRange = 20
   val numbersToCheck = List.range(startRange, endRange).reverse  // Don't take the last element of the range.
   val solution = Iterator
     .from(endRange, endRange)
