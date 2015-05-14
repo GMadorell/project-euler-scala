@@ -21,4 +21,17 @@ class MultipleTest extends FlatSpec with Matchers {
     Multiple.isMultiple(3)(2) should be (false)
     Multiple.isMultiple(3)(1) should be (false)
   }
+
+  "isMultipleOfAll" should "return true if the number is multiple of all the elements of the collection" in {
+    Multiple.isMultipleOfAll(List.range(1, 1))(2) should be (true)
+    Multiple.isMultipleOfAll(List.range(1, 11))(2520) should be (true)
+    Multiple.isMultipleOfAll(List.range(1, 11))(List.range(1, 11).product) should be (true)
+    Multiple.isMultipleOfAll(List.range(1, 1000))(List.range(1, 1000).product) should be (true)
+    Multiple.isMultipleOfAll(List.range(1, 10000))(List.range(1, 10000).product) should be (true)
+  }
+
+  it should "return false if the number is not multiple of all the elements of the collection" in {
+    Multiple.isMultipleOfAll(List.range(1, 3))(3) should be (false)
+    Multiple.isMultipleOfAll(List.range(1, 4))(7) should be (false)
+  }
 }
