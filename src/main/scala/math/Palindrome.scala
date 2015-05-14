@@ -15,7 +15,10 @@ object Palindrome {
    */
   def findLargestPalindromeProductOfDigits(digits: Int): Int = {
     val maxNumber = Math.pow(10, digits).toInt - 1
-    val numbersIterator = for(a <- Iterator.range(maxNumber, 0, -1); b <- Iterator.range(maxNumber, 0, -1)) yield (a, b)
+    val minNumber = Math.pow(10, digits-1).toInt
+    val numbersIterator = for {a <- Iterator.range(maxNumber, minNumber, -1)
+                               b <- Iterator.range(maxNumber, minNumber, -1)
+                               if a <= b} yield (a, b)
     numbersIterator.map(n => n._1 * n._2).filter(isPalindrome).max
   }
 }
