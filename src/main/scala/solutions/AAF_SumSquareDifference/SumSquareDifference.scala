@@ -1,5 +1,7 @@
 package solutions.AAF_SumSquareDifference
 
+import math.SumEquations
+
 object SumSquareDifference extends App {
   /**
    * The sum of the squares of the first ten natural numbers is,
@@ -54,5 +56,17 @@ object SumSquareDifference extends App {
   val optimizedSolution = higherNumberMultiplicationIterator.sum
 
   println("Solution to 'Sum Square Difference' - optimized: " + optimizedSolution)
-  require(solution == optimizedSolution)
+
+
+  /*
+   * Even more optimized version:
+   * After reading the solution from Project Euler, it seems that you can calculate both
+   * the sumOfSquares and the squareOfSums with a formula directly, without iterating
+   * over anything.
+   */
+  val evenMoreOptimizedSolution =
+    Math.pow(SumEquations.sumUpToN(amountOfNumbers), 2).toLong - SumEquations.sumOfSquares(amountOfNumbers)
+  println("Solution to 'Sum Square Difference' - even more optimized: " + evenMoreOptimizedSolution)
+
+  require(solution == optimizedSolution && solution == evenMoreOptimizedSolution)
 }
