@@ -15,15 +15,12 @@ object SpecialPythagoreanTriplet extends App {
 
   val sumExpectedResult = 1000
 
-  def bruteForcePythagoreanTriplets(sumExpectedResult: Int): List[List[Int]] = {
-    val tripletIterator = for {
-      a <- 3 to (sumExpectedResult-3)/3
-      b <- a+1 to (sumExpectedResult-1-a)/2
-      c = sumExpectedResult-a-b
-      if square(a) + square(b) == square(c)
-    } yield List(a, b, c)
-    tripletIterator.toList
-  }
+  def bruteForcePythagoreanTriplets(sumExpectedResult: Int): Iterable[List[Int]] = for {
+    a <- 3 to (sumExpectedResult - 3) / 3
+    b <- a + 1 to (sumExpectedResult - 1 - a) / 2
+    c = sumExpectedResult - a - b
+    if square(a) + square(b) == square(c)
+  } yield List(a, b, c)
 
   val bruteForceSolution = bruteForcePythagoreanTriplets(sumExpectedResult).head
   println("Solution to 'Special Pythagorean Triplet' with brute force: " + bruteForceSolution +
