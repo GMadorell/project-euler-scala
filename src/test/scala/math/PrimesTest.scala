@@ -1,10 +1,10 @@
 package math
 
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{FlatSpec, Matchers}
 
 class PrimesTest extends FlatSpec with Matchers {
   "primes" should "represent the correct sequence" in {
-    Primes.primes.take(20).toList should be (
+    Primes.primes.take(20).toList should be(
       List(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71)
     )
   }
@@ -47,5 +47,16 @@ class PrimesTest extends FlatSpec with Matchers {
 
   it should "work well with very long numbers" in {
     Primes.primeFactors(123123123123123L) should be(List(3, 31, 41, 41, 271, 2906161))
+  }
+
+  "getAllPrimesUpToN" should "return the sorted primes <= than the given number" in {
+    Primes.getAllPrimesUpToN(1) should be(List())
+    Primes.getAllPrimesUpToN(3) should be(List(2, 3))
+    Primes.getAllPrimesUpToN(4) should be(List(2, 3))
+    Primes.getAllPrimesUpToN(10) should be(List(2, 3, 5, 7))
+    Primes.getAllPrimesUpToN(20) should be(List(2, 3, 5, 7, 11, 13, 17, 19))
+    Primes.getAllPrimesUpToN(82) should be(
+      List(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79)
+    )
   }
 }
