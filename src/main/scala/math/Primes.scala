@@ -1,7 +1,6 @@
 package math
 
 import math.Multiple._
-import math.Square.square
 import spire.implicits._
 import spire.math.Integral
 
@@ -26,20 +25,20 @@ object Primes {
     if (n <= 4) return primes.takeWhile(_ <= n).toList
 
     // Sieve of Eratosthenes implementation.
-    val crossLimit = Math.sqrt(n.toDouble).toInt
-    val sieve = Array.fill(n+1)(false)
-    for (i <- 4 to n by 2) sieve(i) = true
-    for (i <- 3 to crossLimit by 2) {
+    val sieveBound = (n - 1) / 2
+    val crossLimit = (Math.sqrt(n.toDouble).toInt - 1) / 2
+    val sieve = Array.fill(sieveBound + 1)(false)
+    for (i <- 1 to crossLimit) {
       if (!sieve(i)) {
-        for (j <- square(i) to n by 2 * i) {
+        for (j <- 2 * i * (i + 1) to sieveBound by 2 * i + 1) {
           sieve(j) = true
         }
       }
     }
 
-    val sievePrimes = collection.mutable.ListBuffer[Int]()
-    for (i <- 2 to n) {
-      if (!sieve(i)) sievePrimes.append(i)
+    val sievePrimes = collection.mutable.ListBuffer[Int](2)
+    for (i <- 1 to sieveBound) {
+      if (!sieve(i)) sievePrimes.append(2 * i + 1)
     }
     sievePrimes.toList
   }
