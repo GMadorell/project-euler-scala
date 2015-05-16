@@ -1,9 +1,11 @@
 package solutions.AAI_SpecialPythagoreanTriplet
 
+import math.Square.square
+
 object SpecialPythagoreanTriplet extends App {
   /**
-   * A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
-   *      a**2 + b**2 = c**2
+   * A Pythagorean triplet is a set of three natural numbers, a < b < c,
+   * for which: a**2 + b**2 = c**2
    *
    * For example, 3**2 + 4**2 = 9 + 16 = 25 = 5**2.
    *
@@ -11,20 +13,21 @@ object SpecialPythagoreanTriplet extends App {
    * Find the product abc.
    */
 
-  /*
-   * Brute force approach.
-   */
-  def square = (x: Int) => x * x
-  val tripletIterator = for {
-    a <- 1 to 330
-    b <- 2 to 500
-    c <- 333 to 1000
-    if a + b + c == 1000
-    if a < b && b < c
-    if square(a) + square(b) == square(c)
-  } yield (a, b, c)
+  val sumExpectedResult = 1000
 
-  val solution = tripletIterator.head
-  val solutionProduct = solution._1 * solution._2 * solution._3
-  println("Solution to 'Special Pythagorean Triplet': " + solution + " with product: " + solutionProduct )
+  def bruteForcePythagoreanTriplets(sumExpectedResult: Int): List[List[Int]] = {
+    val tripletIterator = for {
+      a <- 3 to (sumExpectedResult-3)/3
+      b <- a+1 to (sumExpectedResult-1-a)/2
+      c = sumExpectedResult-a-b
+      if square(a) + square(b) == square(c)
+    } yield List(a, b, c)
+    tripletIterator.toList
+  }
+
+  val bruteForceSolution = bruteForcePythagoreanTriplets(sumExpectedResult).head
+  println("Solution to 'Special Pythagorean Triplet' with brute force: " + bruteForceSolution +
+    " with product: " + bruteForceSolution.product)
+
+  require(bruteForceSolution.product == 31875000)
 }
