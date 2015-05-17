@@ -36,10 +36,11 @@ object Primes {
       }
     }
 
-    val sievePrimes = collection.mutable.ListBuffer[Int](2)
-    for (i <- 1 to sieveBound) {
-      if (!sieve(i)) sievePrimes.append(2 * i + 1)
-    }
-    sievePrimes.toList
+    val sievePrimes = sieve.zipWithIndex
+      .filter { case (isNotPrime, index) => index >= 1 }
+      .filter { case (isNotPrime, index) => !isNotPrime }
+      .map { case (isNotPrime, index) => 2 * index + 1 }
+
+    List(2) ::: sievePrimes.toList
   }
 }
