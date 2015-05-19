@@ -19,4 +19,13 @@ class SumEquationsTest extends FlatSpec with Matchers {
     SumEquations.sumUpToN(4) should be (10)
     SumEquations.sumUpToN(5) should be (15)
   }
+
+  "sumUntilN" should "return the correct value" in {
+    SumEquations.sumUntilN(0) should be(0)
+    SumEquations.sumUntilN(1) should be(0)
+    SumEquations.sumUntilN(2) should be(1)
+    SumEquations.sumUntilN(3) should be(3)
+    SumEquations.sumUntilN(4) should be(6)
+    SumEquations.sumUntilN(5) should be(10)
+  }
 }
